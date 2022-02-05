@@ -11,9 +11,6 @@ function clearStatus() {
 
 function clearTable() {
     return new Promise((resolve) => {
-        clearStatus().catch((err) => {
-            console.log(err);
-        });
         const tdBtns = document.getElementsByClassName('table-button');
         for (let tdBtn of tdBtns) {
             document.getElementById(tdBtn.id).style.backgroundColor = '#f8f9fa';
@@ -22,9 +19,17 @@ function clearTable() {
     });
 }
 
-function selectCell() {
+function selectCell(btnId) {
     return new Promise((resolve) => {
-        console.log(event.target.parentElement.id);
+        // TODO: just grab button id an translate to td id
+        console.log(btnId);
+        console.log(`t${btnId.slice(1)}`);
+        console.log('- - - - - - ');
+        const td = document.getElementById(`t${btnId.slice(1)}`);
+        const btn = document.getElementById(btnId);
+        td.style.backgroundColor = '#188CFF';
+        btn.style.backgroundColor = '#188CFF';
+        btn.style.color = '#f8f9fa';
         resolve(null);
     });
 }
@@ -32,12 +37,14 @@ function selectCell() {
 function main() {
     document.addEventListener('click', (event) => {
         if (event.target.className.includes('table-button')) {
-            selectCell().catch((err) => {
+            selectCell(event.target.id).catch((err) => {
                 console.log(err);
             });
         } else if (event.target.id === 'resetBtn') {
-            clearTable().catch((err) => {
-                console.log(err);
+            clearTable().then(() => {
+                clearStatus().catch((err) => {
+                    console.log(err);
+                });
             });
         } else if (event.target.id === 'submitBtn') {
             document.getElementById('statusMsg').innerHTML = 'Selected ...';
