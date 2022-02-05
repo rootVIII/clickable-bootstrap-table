@@ -28,7 +28,7 @@ function selectCell(btnId) {
         const btn = document.getElementById(btnId);
         td.style.backgroundColor = '#188CFF';
         btn.style.backgroundColor = '#188CFF';
-        btn.style.color = '#f8f9fa';
+        btn.style.setProperty('color', '#f8f9fa', 'important');
         resolve(null);
     });
 }
