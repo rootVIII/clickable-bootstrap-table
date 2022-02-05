@@ -23,7 +23,7 @@ function main() {
                 console.log(err);
             });
         } else if (event.target.id === 'resetBtn') {
-
+            window.location.reload();
         } else if (event.target.id === 'submitBtn') {
             document.getElementById('statusMsg').innerHTML = 'Selected ...';
             setTimeout(() => {
