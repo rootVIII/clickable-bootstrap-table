@@ -28,17 +28,16 @@ function selectCell(btnId) {
         btn.style.backgroundColor = '#188CFF';
         td.style.backgroundColor = '#188CFF';
         document.getElementById('statusMsg').innerHTML = btn.innerText.trim();
-        resolve(null);
+        resolve(btnId);
     });
 }
 
 function setSelection() {
     const statusMsg = document.getElementById('statusMsg');
     for (let tdBtn of document.getElementsByClassName('table-button')) {
-        console.log(tdBtn.style.backgroundColor.trim());
         if (tdBtn.style.backgroundColor === 'rgb(24, 140, 255)') {
-            console.log(tdBtn.id);
             statusMsg.innerHTML = `Selected ${tdBtn.innerText.trim()}`;
+            break;
         }
     }
 }
@@ -46,9 +45,12 @@ function setSelection() {
 function main() {
     document.addEventListener('click', (event) => {
         if (event.target.className.includes('table-button')) {
-            selectCell(event.target.id).catch((err) => { console.log(err); });
+            selectCell(event.target.id).then((btnId) => {
+                deselectCells(btnId).catch((err) => console.log(err));
+            });
         } else if (event.target.id === 'resetBtn') {
             deselectCells().catch((err) => { console.log(err); });
+            clearStatus();
         } else if (event.target.id === 'submitBtn') {
             setSelection();
             setTimeout(() => {
