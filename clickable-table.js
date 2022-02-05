@@ -49,7 +49,7 @@ function main() {
                 deselectCells(btnId).catch((err) => console.log(err));
             });
         } else if (event.target.id === 'resetBtn') {
-            deselectCells().catch((err) => { console.log(err); });
+            deselectCells().catch((err) => console.log(err));
             clearStatus();
         } else if (event.target.id === 'submitBtn') {
             setSelection();
