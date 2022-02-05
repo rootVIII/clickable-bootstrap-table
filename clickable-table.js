@@ -21,7 +21,6 @@ function clearTable() {
 
 function selectCell(btnId) {
     return new Promise((resolve) => {
-        // TODO: just grab button id an translate to td id
         console.log(btnId);
         console.log(`t${btnId.slice(1)}`);
         console.log('- - - - - - ');
