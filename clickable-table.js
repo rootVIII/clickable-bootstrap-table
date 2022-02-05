@@ -1,5 +1,9 @@
 // https://github.com/rootVIII/clickable-bootstrap-table
 
+function clearStatus() {
+    document.getElementById('statusMsg').innerHTML = '&thinsp;';
+}
+
 function selectCell(btnId) {
     return new Promise((resolve) => {
         const td = document.getElementById(`t${btnId.slice(1)}`);
@@ -23,7 +27,7 @@ function main() {
         } else if (event.target.id === 'submitBtn') {
             document.getElementById('statusMsg').innerHTML = 'Selected ...';
             setTimeout(() => {
-                document.getElementById('statusMsg').innerHTML = '&thinsp;';
+                clearStatus();
             }, 5000);
         }
     });
