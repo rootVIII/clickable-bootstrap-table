@@ -13,7 +13,11 @@ function clearTable() {
     return new Promise((resolve) => {
         const tdBtns = document.getElementsByClassName('table-button');
         for (let tdBtn of tdBtns) {
-            document.getElementById(tdBtn.id).style.backgroundColor = '#f8f9fa';
+            const btn = document.getElementById(tdBtn.id);
+            const td = document.getElementById(`t${tdBtn.id.slice(1)}`);
+            btn.style.color = '#212529';
+            btn.style.backgroundColor = '#f8f9fa';
+            td.style.backgroundColor = '#f8f9fa';
         }
         resolve(null);
     });
@@ -21,14 +25,12 @@ function clearTable() {
 
 function selectCell(btnId) {
     return new Promise((resolve) => {
-        console.log(btnId);
-        console.log(`t${btnId.slice(1)}`);
-        console.log('- - - - - - ');
         const td = document.getElementById(`t${btnId.slice(1)}`);
         const btn = document.getElementById(btnId);
-        td.style.backgroundColor = '#188CFF';
-        btn.style.backgroundColor = '#188CFF';
         btn.style.setProperty('color', '#f8f9fa', 'important');
+        btn.style.backgroundColor = '#188CFF';
+        td.style.backgroundColor = '#188CFF';
+        document.getElementById('statusMsg').innerHTML = btn.innerText.trim();
         resolve(null);
     });
 }
