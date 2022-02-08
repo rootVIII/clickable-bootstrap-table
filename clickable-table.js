@@ -9,11 +9,8 @@ function deselectCells(btnId = null) {
         const tdBtns = document.getElementsByClassName('table-button');
         for (let tdBtn of tdBtns) {
             if (btnId !== tdBtn.id && tdBtn.style.backgroundColor.length) {
-                const td = document.getElementById(`t${tdBtn.id.slice(1)}`);
                 tdBtn.style.color = '#212529';
                 tdBtn.style.backgroundColor = 'transparent';
-                td.style.setProperty('color', '#F8F9FA', 'important');
-                td.style.backgroundColor = '#F8F9FA';
             }
         }
         resolve(null);
@@ -22,11 +19,9 @@ function deselectCells(btnId = null) {
 
 function selectCell(btnId) {
     return new Promise((resolve) => {
-        const td = document.getElementById(`t${btnId.slice(1)}`);
         const btn = document.getElementById(btnId);
         btn.style.setProperty('color', '#F8F9FA', 'important');
         btn.style.backgroundColor = '#188CFF';
-        td.style.backgroundColor = '#188CFF';
         document.getElementById('statusMsg').innerHTML = btn.innerText.trim();
         resolve(btnId);
     });
